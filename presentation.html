@@ -1,684 +1,405 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
-  <title>WEB前端技术选型</title>
-  <style type="text/css">
-    body {
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  color: #222;
-  font-size: 100%;
-}
-
-.slide {
-  position: absolute;
-  top: 0; bottom: 0;
-  left: 0; right: 0;
-  background-color: #f7f7f7;
-}
-
-.slide-content {
-  width: 800px;
-  height: 600px;
-  overflow: hidden;
-  margin: 80px auto 0 auto;
-  padding: 30px;
-
-  font-weight: 200;
-  font-size: 200%;
-  line-height: 1.375;
-}
-
-.controls {
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
-}
-
-.arrow {
-  width: 0; height: 0;
-  border: 30px solid #333;
-  float: left;
-  margin-right: 30px;
-
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-
-.prev {
-  border-top-color: transparent;
-  border-bottom-color: transparent;
-  border-left-color: transparent;
-
-  border-left-width: 0;
-  border-right-width: 50px;
-}
-
-.next {
-  border-top-color: transparent;
-  border-bottom-color: transparent;
-  border-right-color: transparent;
-
-  border-left-width: 50px;
-  border-right-width: 0;
-}
-
-.prev:hover {
-  border-right-color: #888;
-  cursor: pointer;
-}
-
-.next:hover {
-  border-left-color: #888;
-  cursor: pointer;
-}
-
-h1 {
-  font-size: 300%;
-  line-height: 1.2;
-  text-align: center;
-  margin: 170px 0 0;
-}
-
-h2 {
-  font-size: 100%;
-  line-height: 1.2;
-  margin: 5px 0;
-  text-align: center;
-  font-weight: 200;
-}
-
-h3 {
-  font-size: 140%;
-  line-height: 1.2;
-  border-bottom: 1px solid #aaa;
-  margin: 0;
-  padding-bottom: 15px;
-}
-
-ul {
-  padding: 20px 0 0 60px;
-  font-weight: 200;
-  line-height: 1.375;
-}
-
-.author h1 {
-  font-size: 170%;
-  font-weight: 200;
-  text-align: center;
-  margin-bottom: 30px;
-}
-
-.author h3 {
-  font-weight: 100;
-  text-align: center;
-  font-size: 95%;
-  border: none;
-}
-
-a {
-  text-decoration: none;
-  color: #44a4dd;
-}
-
-a:hover {
-  color: #66b5ff;
-}
-
-pre {
-  font-size: 60%;
-  line-height: 1.3;
-}
-
-.progress {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  height: 3px;
-}
-
-.progress-bar {
-  width: 0%;
-  height: 3px;
-  background-color: #b4b4b4;
-
-  -webkit-transition: width 0.05s ease-out;
-  -moz-transition: width 0.05s ease-out;
-  -o-transition: width 0.05s ease-out;
-  transition: width 0.05s ease-out;
-}
-
-.hidden {
-  display: none;
-}
-
-@media (max-width: 850px) {
-
-  body {
-    font-size: 70%;
-  }
-
-  .slide-content {
-    width: auto;
-  }
-
-  img {
-    width: 100%;
-  }
-
-  h1 {
-    margin-top: 120px;
-  }
-
-  .prev, .prev:hover {
-    border-right-color: rgba(135, 135, 135, 0.5);
-  }
-
-  .next, .next:hover {
-    border-left-color: rgba(135, 135, 135, 0.5);
-  }
-}
-
-@media (max-width: 480px) {
-  body {
-    font-size: 50%;
-    overflow: hidden;
-  }
-
-  .slide-content {
-    padding: 10px;
-    margin-top: 10px;
-    height: 340px;
-  }
-
-  h1 {
-    margin-top: 50px;
-  }
-
-  ul {
-    padding-left: 25px;
-  }
-}
-
-@media print {
-  * {
-    -webkit-print-color-adjust: exact;
-  }
-
-  @page {
-    size: letter;
-  }
-
-  .hidden {
-    display: inline;
-  }
-
-  html {
-    width: 100%;
-    height: 100%;
-    overflow: visible;
-  }
-
-  body {
-    margin: 0 auto !important;
-    border: 0;
-    padding: 0;
-    float: none !important;
-    overflow: visible;
-    background: none !important;
-    font-size: 52%;
-  }
-
-  .progress, .controls {
-    display: none;
-  }
-
-  .slide {
-    position: static;
-  }
-
-  .slide-content {
-    border: 1px solid #222;
-    margin-top: 0;
-    margin-bottom: 40px;
-    height: 3.5in;
-    overflow: visible;
-  }
-
-  .slide:nth-child(even) {
-    /* 2 slides per page */
-    page-break-before: always;
-  }
-}
-
-/*
-
-github.com style (c) Vasily Polovnyov <vast@whiteants.net>
-
-*/
-
-.hljs {
-  display: block;
-  overflow-x: auto;
-  padding: 0.5em;
-  color: #333;
-  background: #f8f8f8;
-}
-
-.hljs-comment,
-.hljs-quote {
-  color: #998;
-  font-style: italic;
-}
-
-.hljs-keyword,
-.hljs-selector-tag,
-.hljs-subst {
-  color: #333;
-  font-weight: bold;
-}
-
-.hljs-number,
-.hljs-literal,
-.hljs-variable,
-.hljs-template-variable,
-.hljs-tag .hljs-attr {
-  color: #008080;
-}
-
-.hljs-string,
-.hljs-doctag {
-  color: #d14;
-}
-
-.hljs-title,
-.hljs-section,
-.hljs-selector-id {
-  color: #900;
-  font-weight: bold;
-}
-
-.hljs-subst {
-  font-weight: normal;
-}
-
-.hljs-type,
-.hljs-class .hljs-title {
-  color: #458;
-  font-weight: bold;
-}
-
-.hljs-tag,
-.hljs-name,
-.hljs-attribute {
-  color: #000080;
-  font-weight: normal;
-}
-
-.hljs-regexp,
-.hljs-link {
-  color: #009926;
-}
-
-.hljs-symbol,
-.hljs-bullet {
-  color: #990073;
-}
-
-.hljs-built_in,
-.hljs-builtin-name {
-  color: #0086b3;
-}
-
-.hljs-meta {
-  color: #999;
-  font-weight: bold;
-}
-
-.hljs-deletion {
-  background: #fdd;
-}
-
-.hljs-addition {
-  background: #dfd;
-}
-
-.hljs-emphasis {
-  font-style: italic;
-}
-
-.hljs-strong {
-  font-weight: bold;
-}
-
-
-  </style>
-</head>
-<body>
-    <div class="progress">
-    <div class="progress-bar"></div>
-  </div>
-
-  <div class="slide" id="slide-1">
-    <section class="slide-content"><h1 id="web-">WEB前端技术选型</h1>
-<h2 id="-">选择最合适的，而不是最好的。</h2>
-</section>
-  </div>
-  <div class="slide hidden" id="slide-2">
-    <section class="slide-content"><h3 id="-">前言</h3>
-<h4 id="-web-">为什么要有web前端？</h4>
-</section>
-  </div>
-  <div class="slide hidden" id="slide-3">
-    <section class="slide-content"><h3 id="web-">WEB前端技术选型</h3>
-<ul>
-<li>前端技术发展</li>
-<li>技术选型可能考虑的问题</li>
-<li>具体case分析</li>
-</ul>
-</section>
-  </div>
-  <div class="slide hidden" id="slide-4">
-    <section class="slide-content"><h3 id="-">前端技术发展</h3>
-<p>看以下代码</p>
-<pre><code>    &lt;html&gt;
-      &lt;head&gt;
-      &lt;/head&gt;
-      &lt;body&gt;
-        Hello World !
-      &lt;/body&gt;
-    &lt;/html&gt;
-
-    &lt;html&gt;
-      &lt;head&gt;
-      &lt;/head&gt;
-      &lt;body&gt;
-        &lt;script&gt;
-          document.write(&#39;Hello World !&#39;);
-        &lt;/script&gt;
-      &lt;/body&gt;
-    &lt;/html&gt;</code></pre>
-</section>
-  </div>
-  <div class="slide hidden" id="slide-5">
-    <section class="slide-content"><h3 id="-">前端技术发展——基本问题</h3>
-<ul>
-<li>解决超文本展示问题。HTML，91发展至今，有24年的坑</li>
-<li>让更多事情在客户端做，降低表单提交的网络开销。Javascript，92年至今，有23年的坑</li>
-<li>让设计师们和读者们，使用自己的偏好覆盖部分原始的设计。CSS，94年至今，有21年的坑</li>
-<li>让页面能处理视频音频等复杂交互，Flash等，目前已经衰微</li>
-</ul>
-</section>
-  </div>
-  <div class="slide hidden" id="slide-6">
-    <section class="slide-content"><h3 id="-html-ria-">前端技术发展——HTML和RIA解决的问题</h3>
-<ul>
-<li>解决文本展示的标准问题。HTML Validator</li>
-<li>丰富展示的交互元素。HTML X/RIA</li>
-</ul>
-</section>
-  </div>
-  <div class="slide hidden" id="slide-7">
-    <section class="slide-content"><h3 id="-js-">前端技术发展——JS解决的问题</h3>
-<ul>
-<li>解决javascript面向对象问题，prototype.js之类</li>
-<li>解决dom操作问题，mootools, dojo, extjs, jQuery，</li>
-<li>大量模块的软件体系结构问题，knockout.js, backbone.j</li>
-<li>大量数据操作和状态变更问题，angular.js，react.js</li>
-</ul>
-</section>
-  </div>
-  <div class="slide hidden" id="slide-8">
-    <section class="slide-content"><h3 id="-css-">前端技术发展——CSS解决的问题</h3>
-<ul>
-<li>解决彼时PC浏览器兼容性问题，CSS的HACK</li>
-<li>解决一个范围内的屏幕适配问题，media queries</li>
-<li>解决无限多屏幕适配问题，rem</li>
-</ul>
-</section>
-  </div>
-  <div class="slide hidden" id="slide-9">
-    <section class="slide-content"><h3 id="-hybrid-">前端技术发展——Hybrid解决的问题</h3>
-<ul>
-<li>解决前端页面调用native资源的问题,  phonegap</li>
-<li>解决同构问题，React native，Ionic</li>
-</ul>
-</section>
-  </div>
-  <div class="slide hidden" id="slide-10">
-    <section class="slide-content"><h3 id="-">前端技术发展——总结</h3>
-<ul>
-<li>解决彼时行业实际问题</li>
-<li>同质化严重，多种技术解决同样问题</li>
-<li>先有具体浏览器的实践再有标准，因此严重依赖浏览器</li>
-<li>解决问题越多的技术，产生的资源越多</li>
-</ul>
-</section>
-  </div>
-  <div class="slide hidden" id="slide-11">
-    <section class="slide-content"><h3 id="-cont-">前端技术发展——总结(cont.)</h3>
-<ul>
-<li>在彼时再吊的技术都会在短时间内过时</li>
-<li>中国大部分中坚开发者，都是从90年代末期开始接触WEB技术，错过了WEB技术发展的源头</li>
-</ul>
-</section>
-  </div>
-  <div class="slide hidden" id="slide-12">
-    <section class="slide-content"><h3 id="-">技术选型考虑的问题</h3>
-<ul>
-<li>成本收益</li>
-<li>可靠性</li>
-<li>技术发展</li>
-<li>特殊限制</li>
-</ul>
-</section>
-  </div>
-  <div class="slide hidden" id="slide-13">
-    <section class="slide-content"><h3 id="-">技术选型考虑的问题——成本收益</h3>
-<ul>
-<li>从老技术到新技术的迁移成本</li>
-<li>组织的学习成本</li>
-<li>带来什么价值</li>
-</ul>
-</section>
-  </div>
-  <div class="slide hidden" id="slide-14">
-    <section class="slide-content"><h3 id="-">技术选型考虑的问题——可靠性</h3>
-<ul>
-<li>可能出现的故障</li>
-<li>业界口碑</li>
-<li>代码质量</li>
-</ul>
-</section>
-  </div>
-  <div class="slide hidden" id="slide-15">
-    <section class="slide-content"><h3 id="-">技术选型考虑的问题——技术发展</h3>
-<ul>
-<li>市场上该领域人力资源的知识结构</li>
-<li>组织应用成果在业界的话语权</li>
-</ul>
-</section>
-  </div>
-  <div class="slide hidden" id="slide-16">
-    <section class="slide-content"><h3 id="-">技术选型考虑的问题——特殊限制</h3>
-<ul>
-<li>组织里某些技术不能用</li>
-<li>业务要求的兼容性等</li>
-</ul>
-</section>
-  </div>
-  <div class="slide hidden" id="slide-17">
-    <section class="slide-content"><h3 id="-">技术选型考虑的问题——特殊限制</h3>
-</section>
-  </div>
-  <div class="slide hidden" id="slide-18">
-    <section class="slide-content"></section>
-  </div>
-  <div class="slide hidden" id="slide-19">
-    <section class="slide-content"><div class="author">
-  <h1 class="name"></h1>
-</div>
-</section>
-  </div>
-
-  <div class="controls">
-    <div class="arrow prev"></div>
-    <div class="arrow next"></div>
-  </div>
-
-
-  <script type="text/javascript">
-    /**
- * Returns the current page number of the presentation.
- */
-function currentPosition() {
-  return parseInt(document.querySelector('.slide:not(.hidden)').id.slice(6));
-}
-
-
-/**
- * Navigates forward n pages
- * If n is negative, we will navigate in reverse
- */
-function navigate(n) {
-  var position = currentPosition();
-  var numSlides = document.getElementsByClassName('slide').length;
-
-  /* Positions are 1-indexed, so we need to add and subtract 1 */
-  var nextPosition = (position - 1 + n) % numSlides + 1;
-
-  /* Normalize nextPosition in-case of a negative modulo result */
-  nextPosition = (nextPosition - 1 + numSlides) % numSlides + 1;
-
-  document.getElementById('slide-' + position).classList.add('hidden');
-  document.getElementById('slide-' + nextPosition).classList.remove('hidden');
-
-  updateProgress();
-  updateURL();
-  updateTabIndex();
-}
-
-
-/**
- * Updates the current URL to include a hashtag of the current page number.
- */
-function updateURL() {
-  window.history.replaceState({} , null, '#' + currentPosition());
-}
-
-
-/**
- * Sets the progress indicator.
- */
-function updateProgress() {
-  var progressBar = document.querySelector('.progress-bar');
-
-  if (progressBar !== null) {
-    var numSlides = document.getElementsByClassName('slide').length;
-    var position = currentPosition() - 1;
-    var percent = (numSlides === 1) ? 100 : 100 * position / (numSlides - 1);
-    progressBar.style.width = percent.toString() + '%';
-  }
-}
-
-
-/**
- * Removes tabindex property from all links on the current slide, sets
- * tabindex = -1 for all links on other slides. Prevents slides from appearing
- * out of control.
- */
-function updateTabIndex() {
-  var allLinks = document.querySelectorAll('.slide a');
-  var position = currentPosition();
-  var currentPageLinks = document.getElementById('slide-' + position).querySelectorAll('a');
-  var i;
-
-  for (i = 0; i < allLinks.length; i++) {
-    allLinks[i].setAttribute('tabindex', -1);
-  }
-
-  for (i = 0; i < currentPageLinks.length; i++) {
-    currentPageLinks[i].removeAttribute('tabindex');
-  }
-}
-
-/**
- * Determines whether or not we are currently in full screen mode
- */
-function isFullScreen() {
-  return document.fullscreenElement ||
-         document.mozFullScreenElement ||
-         document.webkitFullscreenElement ||
-         document.msFullscreenElement;
-}
-
-/**
- * Toggle fullScreen mode on document element.
- * Works on chrome (>= 15), firefox (>= 9), ie (>= 11), opera(>= 12.1), safari (>= 5).
- */
-function toggleFullScreen() {
-  /* Convenient renames */
-  var docElem = document.documentElement;
-  var doc = document;
-
-  docElem.requestFullscreen =
-      docElem.requestFullscreen ||
-      docElem.msRequestFullscreen ||
-      docElem.mozRequestFullScreen ||
-      docElem.webkitRequestFullscreen.bind(docElem, Element.ALLOW_KEYBOARD_INPUT);
-
-  doc.exitFullscreen =
-      doc.exitFullscreen ||
-      doc.msExitFullscreen ||
-      doc.mozCancelFullScreen ||
-      doc.webkitExitFullscreen;
-
-  isFullScreen() ? doc.exitFullscreen() : docElem.requestFullscreen();
-}
-
-document.addEventListener('DOMContentLoaded', function () {
-  // Update the tabindex to prevent weird slide transitioning
-  updateTabIndex();
-
-  // If the location hash specifies a page number, go to it.
-  var page = window.location.hash.slice(1);
-  if (page) {
-    navigate(parseInt(page) - 1);
-  }
-
-  document.onkeydown = function (e) {
-    var kc = e.keyCode;
-
-    // left, down, H, J, backspace, PgUp - BACK
-    // up, right, K, L, space, PgDn - FORWARD
-    // enter - FULLSCREEN
-    if (kc === 37 || kc === 40 || kc === 8 || kc === 72 || kc === 74 || kc === 33) {
-      navigate(-1);
-    } else if (kc === 38 || kc === 39 || kc === 32 || kc === 75 || kc === 76 || kc === 34) {
-      navigate(1);
-    } else if (kc === 13) {
-      toggleFullScreen();
-    }
-  };
-
-  if (document.querySelector('.next') && document.querySelector('.prev')) {
-    document.querySelector('.next').onclick = function (e) {
-      e.preventDefault();
-      navigate(1);
-    };
-
-    document.querySelector('.prev').onclick = function (e) {
-      e.preventDefault();
-      navigate(-1);
-    };
-  }
-});
-
-
-  </script>
-</body>
+  <head>
+    <title>WEB前端技术选型</title>
+    <meta charset="utf-8">
+    <style>
+      @import url(https://fonts.lug.ustc.edu.cn/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.lug.ustc.edu.cn/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.lug.ustc.edu.cn/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body {
+        font-family: 'Yanone Kaffeesatz';
+      }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: 400;
+        margin-bottom: 0;
+      }
+      .remark-slide-content h1 { font-size: 3em; }
+      .remark-slide-content h2 { font-size: 2em; }
+      .remark-slide-content h3 { font-size: 1.6em; }
+      .footnote {
+        position: absolute;
+        bottom: 3em;
+      }
+      li p { line-height: 1.25em; }
+      .red { color: #fa0000; }
+      .large { font-size: 2em; }
+      a, a > code {
+        color: rgb(249, 38, 114);
+        text-decoration: none;
+      }
+      code {
+        background: #e7e8e2;
+        border-radius: 5px;
+      }
+      .remark-code, .remark-inline-code { font-family: 'Ubuntu Mono'; }
+      .remark-code-line-highlighted     { background-color: #373832; }
+      .pull-left {
+        float: left;
+        width: 47%;
+      }
+      .pull-right {
+        float: right;
+        width: 47%;
+      }
+      .pull-right ~ p {
+        clear: both;
+      }
+      #slideshow .slide .content code {
+        font-size: 0.8em;
+      }
+      #slideshow .slide .content pre code {
+        font-size: 0.9em;
+        padding: 15px;
+      }
+      .inverse {
+        background: #272822;
+        color: #777872;
+        text-shadow: 0 0 20px #333;
+      }
+      .inverse h1, .inverse h2 {
+        color: #f3f3f3;
+        line-height: 0.8em;
+      }
+
+      /* Slide-specific styling */
+      #slide-inverse .footnote {
+        bottom: 12px;
+        left: 20px;
+      }
+      #slide-how .slides {
+        font-size: 0.9em;
+        position: absolute;
+        top:  151px;
+        right: 140px;
+      }
+      #slide-how .slides h3 {
+        margin-top: 0.2em;
+      }
+      #slide-how .slides .first, #slide-how .slides .second {
+        padding: 1px 20px;
+        height: 90px;
+        width: 120px;
+        -moz-box-shadow: 0 0 10px #777;
+        -webkit-box-shadow: 0 0 10px #777;
+        box-shadow: 0 0 10px #777;
+      }
+      #slide-how .slides .first {
+        background: #fff;
+        position: absolute;
+        top: 20%;
+        left: 20%;
+        z-index: 1;
+      }
+      #slide-how .slides .second {
+        position: relative;
+        background: #fff;
+        z-index: 0;
+      }
+
+      /* Two-column layout */
+      .left-column {
+        color: #777;
+        width: 20%;
+        height: 92%;
+        float: left;
+      }
+        .left-column h2:last-of-type, .left-column h3:last-child {
+          color: #000;
+        }
+      .right-column {
+        width: 75%;
+        float: right;
+        padding-top: 1em;
+      }
+      .bot-img{
+        position: absolute;
+        bottom: 4em;
+        right: 4em;
+      }
+      .center-img{
+        position: absolute;
+        bottom: 4em;
+        width: 100%;
+
+      }
+      .center-img img{
+        width: 800px;
+        margin: 0 auto;
+      }
+    </style>
+  </head>
+  <body>
+    <textarea id="source">
+      title: WEB前端技术选型
+      class: center, middle, inverse
+
+
+      # WEB前端技术选型
+      [选择最合适的，而不是最好的。]
+
+      ---
+
+      ### 前言
+
+      #### 为什么要有web前端？
+
+      ---
+
+      ### WEB前端技术选型
+
+      * 前端技术发展
+      * 技术选型可能考虑的问题
+      * 具体case分析
+
+      ---
+
+      ### 前端技术发展
+
+      用哪一种？
+
+      ```xml
+      <html>
+        <head>
+        </head>
+        <body>
+          Hello World !
+        </body>
+      </html>
+      ```
+      ```xml
+      <html>
+        <head>
+          <style>
+            body{
+              background: #ccc;
+            }
+          </style>
+        </head>
+        <body>
+          <script>
+            document.write('Hello World !');
+          </script>
+        </body>
+      </html>
+      ```
+
+      ---
+      ### 前端技术发展
+      #### 假设穿越到90年代初，面对这些问题，你们会怎么做
+      - 如何建立超文本？如何组织要展示超文本内容内容？如何展示更多的元素？
+      - 在56K拨号网络下，如何减少解决越来越多的网络交互开销？
+      - 浏览器自带的设计太丑，怎么让用户自己改掉这些设计？
+      - 客户端内嵌页面怎么使用客户端的资源？
+      .bot-img[![Alt text](img/think.jpg)]
+      ---
+
+      ### 前端技术发展——展示更多的超文本元素
+      #### HTML，91发展至今，有24年的坑
+      - 解决文本展示的标准问题。XHTML, HTML X
+      - 丰富展示的交互元素。HTML X/RIA
+      ---
+
+      ### 前端技术发展——让更多的事情在客户端做
+      #### Javascript，92年至今，有23年的坑
+      - 解决javascript面向对象问题，prototype.js之类
+      - 解决dom操作问题，mootools, dojo, extjs, jQuery，
+      - 大量模块的软件体系结构问题，knockout.js, backbone.j
+      - 大量数据操作和状态变更问题，angular.js，react.js
+      ---
+
+      ### 前端技术发展——让设计师可以覆盖默认的设计
+      #### CSS，94年至今，有21年的坑
+      - 解决一个范围内的屏幕适配问题，media queries
+      - 解决无限多屏幕适配问题，rem
+      ---
+
+      ### 前端技术发展——客户端和Web脚本可以互相调用
+      - 解决前端页面调用客户端资源的问题,  Adobe AIR, JavaFX, phonegap
+      - 解决同构问题，React native，Ionic
+      ---
+
+      ### 前端技术发展——平台倾向
+      #### 移动技术发展后，前端分化出专门针对移动场景的技术
+
+      .center-img[![Alt text](img/mobile-web-svsg.jpg)]
+
+      ---
+
+      ### 前端技术发展——技术栈
+      #### 前端技术流派化之后，几种技术组合在一起形成技术栈
+      .center-img[![Alt text](img/tech-stack-setup.jpg)]
+      ---
+
+      ### 前端技术发展——总结
+
+      - 解决彼时行业实际问题
+      - 有其时代背景，是彼时实现成本比较低的方案
+      - 同质化严重，多种技术解决同样问题
+      - 先有具体浏览器的实践再有标准，因此严重依赖浏览器
+      - 解决问题越多的技术，产生的资源越多
+
+      ---
+      ### 前端技术发展——总结(cont.)
+      - 在彼时再吊的技术都会在短时间内过时
+      - 中国大部分中坚开发者，都是从90年代末期开始接触WEB技术，错过了WEB技术发展的源头
+
+      ---
+
+      ### 技术选型的考虑
+
+      #### 齐来YY一下
+      - 如果你现在是一个创业公司的第一个前端开发，你会怎样把公司的前端技术搭起来？
+
+      .bot-img[![Alt text](img/think.jpg)]
+
+      ---
+      ### 技术选型的考虑
+
+      #### 解决什么问题？
+      .bot-img[![Alt text](img/think.jpg)]
+      ---
+
+      ### 技术选型的考虑——解决什么问题
+      - 目前的技术瓶颈
+      - 可测量的价值
+      - 达成什么目标
+
+      ---
+      ### 技术选型的考虑——可能的纬度
+      - 成本收益
+      - 可靠性
+      - 技术发展
+      - 特殊限制
+
+      ---
+
+      ### 技术选型的考虑——测量成本收益
+      - 从老技术到新技术的迁移成本
+      - 组织的学习成本
+      - 复用成本
+
+      ---
+
+      ### 技术选型的考虑——测量可靠性
+      - 可能出现的故障
+      - 业界口碑
+      - 代码质量
+
+      ---
+      ### 技术选型的考虑——测量技术发展
+      - 市场上该领域人力资源的知识结构
+      - 社区支持
+      - 扩展性
+      - 技术栈因素
+      - 组织应用成果在业界的话语权
+
+      ---
+      ### 技术选型的考虑——测量特殊限制
+      - 组织里某些技术不能用
+      - 业务要求的兼容性等
+      ---
+
+      ### 技术选型的考虑——其他话题
+
+      - 为什么淘系，百度等会用自己的前端框架？
+      .bot-img[![Alt text](img/think.jpg)]
+
+      ---
+
+      ### 案例分析--CASE 1
+
+      * 时间：2011年
+      * 场景：1000人以上的公司，10年历史，上百个业务
+      * 平台：PC
+      * 技术：所有业务的前端一直使用YUI。
+      * 问题：YUI社区已经挂了，要不要换？要换的话换什么，不要换的话怎么维护？
+
+      .bot-img[![Alt text](img/cry.jpg)]
+
+      ---
+
+      ### 案例分析--CASE 2
+
+      * 时间：2012年
+      * 场景：1000人以上的公司，11年历史，上百个业务
+      * 平台：PC
+      * 技术：大部分业务的前端使用jQuery，文件用简单的闭包分割。
+      * 问题：业务有很多展示模块，而且有很多人编写，甚至第三方用户编写
+
+      .bot-img[![Alt text](img/shit.jpg)]
+
+      ---
+
+      ### 案例分析--CASE 3
+
+      * 时间：2012年
+      * 场景：1000人以上的公司，11年历史，上百个业务
+      * 平台：PC
+      * 技术：大部分业务的前端使用jQuery，文件用简单的闭包分割。
+      * 问题：模块数量太多，请求太多，怎么办
+
+      .bot-img[![Alt text](img/shit.jpg)]
+
+      ---
+
+      ### 案例分析--CASE 4
+
+      * 时间：2013年
+      * 场景：1000人以上的公司，11年历史，上百个业务
+      * 平台：PC
+      * 技术：页面栏目宽度随便写，导致layout不能复用
+      * 问题：业务有一个首页，一个二级页面，要不要使用网格系统？
+
+      .bot-img[![Alt text](img/crazy.jpg)]
+
+      ---
+
+      ### 案例分析--CASE 5
+
+      * 时间：2014年
+      * 场景：50人公司，3年历史，十数个业务
+      * 平台：PC
+      * 技术：sass预处理的css做的pc页面
+      * 问题：需要做移动站点，用什么前端方案？
+
+      .bot-img[![Alt text](img/crazy.jpg)]
+
+      ---
+
+      ### 案例分析--CASE 6
+
+      * 时间：2014年
+      * 场景：500人公司，11年历史，数十个业务
+      * 平台：移动
+      * 技术：移动页面，PV约100w
+      * 问题：用普通web页面还是用单页应用？
+
+      .bot-img[![Alt text](img/crazy.jpg)]
+
+      ---
+
+      ### 案例分析--CASE 7
+
+      * 时间：2015年
+      * 场景：500人公司，11年历史，数十个业务
+      * 平台：移动
+      * 技术：移动页面，PV约100w，约两周改一次
+      * 问题：是否使用html5来展示？
+
+      .bot-img[![Alt text](img/crazy.jpg)]
+
+      ---
+
+
+
+
+    </textarea>
+    <script src="js/remark.js"></script>
+    <script>
+      var slideshow = remark.create();
+    </script>
+  </body>
 </html>
