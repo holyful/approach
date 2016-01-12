@@ -138,36 +138,23 @@
 
 
       # WEB前端技术选型
-      [选择最合适的，而不是最好的。]
+      [选择最合适的，而不是最好的]
 
       ---
 
-      ### 前言
-
-      #### 为什么要有web前端？
-
-      ---
-
-      ### WEB前端技术选型
+      ### Agenda
 
       * 前端技术发展
-      * 技术选型可能考虑的问题
+      * 技术选型的考虑
       * 具体case分析
 
       ---
 
       ### 前端技术发展
 
-      用哪一种？
-
+      #### 为什么要有web前端？
       ```xml
-      <html>
-        <head>
-        </head>
-        <body>
-          Hello World !
-        </body>
-      </html>
+      Hello World !
       ```
       ```xml
       <html>
@@ -185,6 +172,7 @@
         </body>
       </html>
       ```
+
 
       ---
       ### 前端技术发展
@@ -242,24 +230,14 @@
       - 解决问题越多的技术，产生的资源越多
 
       ---
-      ### 前端技术发展——总结(cont.)
-      - 在彼时再吊的技术都会在短时间内过时
-      - 中国大部分中坚开发者，都是从90年代末期开始接触WEB技术，错过了WEB技术发展的源头
-
-      ---
 
       ### 技术选型的考虑
 
-      #### 齐来YY一下
-      - 如果你现在是一个创业公司的第一个前端开发，你会怎样把公司的前端技术搭起来？
+      #### YY一下
+      - 如果你现在是一个创业公司的第一个前端，你会怎样把公司的前端技术搭起来？
 
       .bot-img[![Alt text](img/think.jpg)]
 
-      ---
-      ### 技术选型的考虑
-
-      #### 解决什么问题？
-      .bot-img[![Alt text](img/think.jpg)]
       ---
 
       ### 技术选型的考虑——解决什么问题
@@ -268,7 +246,7 @@
       - 达成什么目标
 
       ---
-      ### 技术选型的考虑——可能的纬度
+      ### 技术选型的考虑——技术比较的维度
       - 成本收益
       - 可靠性
       - 技术发展
@@ -277,9 +255,10 @@
       ---
 
       ### 技术选型的考虑——测量成本收益
+
       - 从老技术到新技术的迁移成本
-      - 组织的学习成本
-      - 复用成本
+      - 组织目前的技术力量
+      - 新技术的学习成本
 
       ---
 
@@ -293,7 +272,7 @@
       - 市场上该领域人力资源的知识结构
       - 社区支持
       - 扩展性
-      - 技术栈因素
+      - 技术栈，生态等因素
       - 组织应用成果在业界的话语权
 
       ---
@@ -302,12 +281,148 @@
       - 业务要求的兼容性等
       ---
 
-      ### 技术选型的考虑——其他话题
 
-      - 为什么淘系，百度等会用自己的前端框架？
+      ### 技术选型的考虑——实施
+
+      #### 无论选择什么技术，都需要最后实施
+
+      - 灰度
+
+      ---
+
+      ### 技术选型的考虑——其他话题
+      #### 用哪种？
+
+      ```less
+      body{
+        background: #fff;
+        div{
+          background: #ccc;
+        }
+      }
+      ```
+
+      ```css
+      body{
+        background: #fff;
+      }
+      body div{
+        background: #ccc;
+      }
+      ```
+
       .bot-img[![Alt text](img/think.jpg)]
 
       ---
+
+      ### 技术选型的考虑——其他话题
+      #### 用哪种？
+
+      ```javascript
+      var $dom = document.querySelectorAll('div');
+      ```
+
+      ```javascript
+      var $dom = $('div');
+      ```
+
+      .bot-img[![Alt text](img/think.jpg)]
+
+      ---
+
+      ### 技术选型的考虑——其他话题
+
+      #### 用哪种？
+
+      ```javascript
+      define(['a','b'], function(a, b){
+        ...
+      });
+      ```
+
+      ```javascript
+      define(function(){
+        var a = require('a');
+        var b = require('b');
+        ...
+      });
+      ```
+
+      .bot-img[![Alt text](img/think.jpg)]
+
+      ---
+
+      ### 技术选型的考虑——其他话题
+
+      #### 用哪种？
+
+      ```html
+      <html>
+
+        <head>
+          <link rel="stylesheet" type="text/css" href="default.css" />
+          <!--[if lte IE 8]>
+            <link rel="stylesheet" type="text/css" href="ie8.css" />
+          <![endif]-->
+        </head>
+      </html>
+      ```
+
+      ```css
+      body{
+        height:100px;
+        height:90px\9;
+      }
+      ```
+      .bot-img[![Alt text](img/think.jpg)]
+
+      ---
+
+      ### 技术选型的考虑——其他话题
+
+      #### 用哪种？
+
+      ```javascript
+      define(function(){
+
+      });
+      ```
+
+      ```javascript
+      (function(){
+
+      })
+      ```
+
+      .bot-img[![Alt text](img/think.jpg)]
+
+      ---
+
+      ### 技术选型的考虑——其他话题
+
+      #### 为什么淘系，百度等会用自己的前端框架？
+
+      .bot-img[![Alt text](img/think.jpg)]
+
+      ---
+
+      ### 技术选型的考虑——其他话题
+
+      #### 为什么点评会用cortex？
+
+      .bot-img[![Alt text](img/think.jpg)]
+
+      ---
+
+
+      ### 技术选型的考虑——其他话题
+
+      #### 如何评价一个公司的前端技术？
+
+      .bot-img[![Alt text](img/think.jpg)]
+
+      ---
+
 
       ### 案例分析--CASE 1
 
@@ -393,13 +508,33 @@
 
       ---
 
+      ### 案例分析--CASE 8
+
+
+
+
+      ---
+
+      ### Conclusion
+
+
+
+      ---
 
 
 
     </textarea>
+
+    <script>
+      var hljs = remark.highlighter.engine;
+    </script>
     <script src="js/remark.js"></script>
     <script>
-      var slideshow = remark.create();
+      var slideshow = remark.create({
+          highlightStyle: 'monokai',
+          highlightLanguage: 'remark',
+          highlightLines: true
+      }) ;
     </script>
   </body>
 </html>
