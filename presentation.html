@@ -3,7 +3,7 @@
   <head>
     <title>WEB前端技术选型</title>
     <meta charset="utf-8">
-    <style>
+    <style media="screen">
       @import url(https://fonts.lug.ustc.edu.cn/css?family=Yanone+Kaffeesatz);
       @import url(https://fonts.lug.ustc.edu.cn/css?family=Droid+Serif:400,700,400italic);
       @import url(https://fonts.lug.ustc.edu.cn/css?family=Ubuntu+Mono:400,700,400italic);
@@ -130,6 +130,14 @@
         margin: 0 auto;
       }
     </style>
+    <style media="printer">
+    .bot-img{
+      display: none;
+    }
+    .center-img{
+      display: none;
+    }
+    </style>
   </head>
   <body>
     <textarea id="source">
@@ -142,7 +150,7 @@
 
       ---
 
-      ### Agenda
+      ### WEB前端技术选型
 
       * 前端技术发展
       * 技术选型的考虑
@@ -152,7 +160,7 @@
 
       ### 前端技术发展
 
-      #### 前端是什么？前端为何出现？前端会怎么发展？
+      #### 前端是什么？前端为何出现？前端会到哪里去？
       ```xml
       Hello World !
       ```
@@ -194,8 +202,8 @@
       #### Javascript，92年至今，有23年的坑
       - 解决javascript面向对象问题，prototype.js之类
       - 解决dom操作问题，mootools, dojo, extjs, jQuery，
-      - 大量模块的软件体系结构问题，knockout.js, backbone.j
-      - 大量数据操作和状态变更问题，angular.js，react.js
+      - 大量模块的软件体系结构问题，knockout, backbone
+      - 大量数据操作和状态变更问题，angular，react
       ---
 
       ### 前端技术发展——让设计师可以覆盖默认的设计
@@ -234,6 +242,7 @@
       ### 前端技术发展——总结
 
       #### 前端是什么？前端为何出现？前端会怎么发展？
+
       .bot-img[![Alt text](img/think.jpg)]
 
       ---
@@ -287,6 +296,11 @@
       ### 技术选型的考虑——测量特殊限制
       - 组织里某些技术不能用
       - 业务要求的兼容性等
+      ---
+
+      ### 技术选型的考虑——实施
+      -
+
       ---
 
       ### 技术选型的考虑——具体问题
